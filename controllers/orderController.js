@@ -103,7 +103,7 @@ exports.getOrders = async (req, res) => {
       `SELECT o.*, u.name as buyer_name 
        FROM orders o 
        JOIN users u ON o.buyer_id = u.id 
-       WHERE o.buyer_id = 1`,
+       ORDER BY o.buyer_id = 1`,
       [1]
     );
     
