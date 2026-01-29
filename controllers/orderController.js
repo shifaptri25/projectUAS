@@ -69,3 +69,29 @@ exports.updateOrderStatus = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+// Tambah function INI di controller:
+exports.getOrders = async (req, res) => {
+  try {
+    // Ganti req.user.id dengan 1 (demo)
+    const [orders] = await pool.execute(
+      `SELECT o.*, u.name as buyer_name 
+       FROM orders o 
+       JOIN users u ON o.buyer_id = u.id 
+       WHERE o.buyer_id = 1`,
+      [1]
+    );
+    
+    res.json({ 
+      success: true, 
+      count: orders.length,
+      data: orders 
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      message: error.message 
+    });
+  }
+};
+

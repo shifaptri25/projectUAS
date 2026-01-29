@@ -17,6 +17,9 @@ app.use('/api/products', require('./routes/products'));
 
 // Orders COMMENT dulu biar ga error
 app.use('/api/orders', require('./routes/orders'));
+app.use('/api/orders', require('./routes/orders'));
+app.use('/api/shipping', require('./routes/shipping'));
+app.use('/api/profile', require('./routes/profile'));
 
 app.listen(3000, () => {
   console.log('http://localhost:3000');

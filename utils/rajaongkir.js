@@ -11,7 +11,7 @@ const getShippingCost = async (originAddr, destAddr, weight = 1000, courier = 'j
       courier: courier
     }, {
       headers: {
-        'key': 'c622ece9e09d2f430a4a53711d7e3b29',
+        'key': 'kgVD8ysRfe7052c25fef1fe21GcQPNnW',
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     });

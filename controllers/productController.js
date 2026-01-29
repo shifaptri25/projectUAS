@@ -15,7 +15,6 @@ exports.getProducts = async (req, res) => {
   }
 };
 
-// ✅ INI YANG KURANG!
 exports.getProductById = async (req, res) => {
   try {
     const [rows] = await pool.execute(`
