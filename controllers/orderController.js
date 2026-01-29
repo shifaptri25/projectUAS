@@ -14,11 +14,18 @@ exports.createOrder = async (req, res) => {
     const shippingCost = 15000;
     const shippingEtd = '2-3 hari';
     
-    const totalAmount = items.reduce((sum, item) => sum + (item.price * item.quantity), 0) + shippingCost;
+    // Hitung subtotal items
+    const itemsSubtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    // Hitung total amount
+    const totalAmount = itemsSubtotal + shippingCost;
+    
+    // Gunakan buyer ID dengan pengecekan jika req.user tidak ada (untuk testing)
+    const buyerId = req.user ? req.user.id : 1; // Default ke user ID 1 untuk testing
     
     const [orderResult] = await connection.execute(
       'INSERT INTO orders (buyer_id, total_amount, shipping_cost, shipping_courier, shipping_etd, address, status) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [req.user.id, totalAmount, shippingCost, courier, shippingEtd, address, 'pending']
+      [buyerId, totalAmount, shippingCost, courier, shippingEtd, address, 'pending']
     );
     
     const orderId = orderResult.insertId;
@@ -30,7 +37,25 @@ exports.createOrder = async (req, res) => {
     }
     
     await connection.commit();
-    res.status(201).json({ success: true, message: 'Order berhasil', orderId });
+    
+    // RESPONSE YANG DIPERBAIKI - MENAMPILKAN INFORMASI ONGKIR
+    res.status(201).json({ 
+      success: true, 
+      message: 'Order berhasil dibuat',
+      orderId: orderId,
+      shipping: {
+        cost: shippingCost,
+        courier: courier,
+        estimatedDelivery: shippingEtd
+      },
+      total: totalAmount,
+      breakdown: {
+        items: itemsSubtotal,
+        shipping: shippingCost,
+        total: totalAmount
+      }
+    });
+    
   } catch (error) {
     await connection.rollback();
     res.status(500).json({ success: false, message: error.message });
