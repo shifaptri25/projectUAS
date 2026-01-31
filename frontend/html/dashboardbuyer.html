@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marketplace</title>
+  <link rel="stylesheet" href="../css/buyer.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Online Shop</div>
+
+  <input type="text" id="search" placeholder="Cari produk..." />
+
+  <select id="categoryFilter">
+    <option value="">Semua Kategori</option>
+  </select>
+
+  <a href="buyer-cart.html" class="nav-link" onclick="openCart()">
+    Keranjang 
+  </a>
+
+  <a href="buyer-orders.html" class="nav-link">Orders</a>
+  <a href="buyer-profile.html" class="nav-link">Profile</a>
+</header>
+
+
+
+<main>
+  <div id="productGrid" class="grid"></div>
+</main>
+
+<div id="cartModal" class="cart-modal">
+  <div class="cart-content">
+    <h2>Keranjang</h2>
+    <div id="buyer-cart.ht"></div>
+    <button onclick="checkout()">Beli Sekarang</button>
+    <button onclick="closeCart()">Tutup</button>
+  </div>
+</div>
+
+
+<script src="../js/buyer.js"></script>
+</body>
+</html>

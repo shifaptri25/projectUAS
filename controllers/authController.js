@@ -5,10 +5,8 @@ require('dotenv').config();
 
 exports.register = async (req, res) => {
   try {
-    // FIX: Cek req.body & kasih default value
     const { email, password, name, role = 'buyer', address = null, phone = null } = req.body || {};
     
-    // VALIDASI manual sebelum DB
     if (!email || !password || !name) {
       return res.status(400).json({ 
         success: false, 

@@ -1,42 +1,43 @@
+require('dotenv').config();
 const axios = require('axios');
 
-const getShippingCost = async (originAddr, destAddr, weight = 1000, courier = 'jne') => {
+const getShippingCost = async (origin, destination, weight = 1000, courier = 'jne') => {
   try {
-    console.log('RajaOngkir API:', { originAddr, destAddr, weight });
-    
-    const response = await axios.post('https://api.rajaongkir.com/starter/cost', {
-      origin: 3676, // Bandung
-      destination: 501, // Jakarta
-      weight: Math.ceil(weight / 1000),
-      courier: courier
-    }, {
-      headers: {
-        'key': 'kgVD8ysRfe7052c25fef1fe21GcQPNnW',
-        'Content-Type': 'application/x-www-form-urlencoded'
+    // ⚠️ STEP 1: Gunakan URLSearchParams untuk format x-www-form-urlencoded
+    // API ini TIDAK BISA baca JSON biasa.
+    const params = new URLSearchParams();
+    params.append('origin', origin);         // Harus ID (misal: '22')
+    params.append('destination', destination); // Harus ID (misal: '152')
+    params.append('weight', weight);
+    params.append('courier', courier);
+
+    console.log('🚚 Mengirim data ke Komerce:', params.toString());
+
+    // ⚠️ STEP 2: Kirim dengan header yang sesuai
+    const response = await axios.post(
+      'https://rajaongkir.komerce.id/api/v1/calculate/domestic-cost', 
+      params, // Kirim object URLSearchParams, bukan object JSON biasa
+      {
+        headers: {
+          'key': process.env.KOMERCE_API_KEY, 
+          'Content-Type': 'application/x-www-form-urlencoded' // ⬅️ WAJIB INI
+        }
       }
-    });
+    );
+
+    console.log('✅ Sukses:', response.data);
+    return { rajaongkir: response.data.data };
+
+  } catch (err) {
+    console.error('❌ API Error:', err.response?.data || err.message);
     
-    console.log('RajaOngkir response:', response.data);
-    return response.data;
+    // Tampilkan pesan error spesifik jika ada
+    if (err.response?.data?.meta?.message) {
+      console.error('Detail:', err.response.data.meta.message);
+    }
     
-  } catch (error) {
-    console.log('RajaOngkir error, pakai fallback');
-    
-    // FALLBACK identik format RajaOngkir
-    return {
-      "rajaongkir": {
-        "status": { "code": 200, "description": "Ongkir estimasi" },
-        "data": [{
-          "name": "JNE",
-          "costs": [{
-            "service": "JNE Reguler",
-            "description": "Pengiriman reguler",
-            "cost": [{ "value": 15000, "etd": "2-3 hari" }]
-          }]
-        }]
-      }
-    };
+    return null;
   }
 };
 
-module.exports = { getShippingCost };
+module.exports = getShippingCost;

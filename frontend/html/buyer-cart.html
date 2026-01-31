@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keranjang Saya</title>
+  <link rel="stylesheet" href="../css/buyer.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Online Shop</div>
+  <a href="dashboardbuyer.html" class="nav-link">Kembali Belanja</a>
+</header>
+
+<main class="cart-page">
+
+  <!-- LIST PRODUK -->
+  <section class="cart-left">
+    <h2>Keranjang Saya</h2>
+    <div id="cartItems"></div>
+  </section>
+
+  <!-- ONGKIR & CHECKOUT -->
+  <section class="cart-right">
+    <h2>Pengiriman & Checkout</h2>
+
+    <label for="address">Alamat Tujuan</label>
+    <textarea id="address" placeholder="Masukkan alamat lengkap"></textarea>
+
+    <label for="destination">Kota Tujuan</label>
+    <input type="text" id="destination" placeholder="Contoh: Jakarta">
+
+    <label for="origin">Kota Penjual (Origin)</label>
+    <input type="text" id="origin" placeholder="Contoh: Bandung">
+
+    <!-- WAJIB type=button -->
+    <button type="button" class="btn-ongkir" onclick="checkShipping()">
+      Cek Ongkir
+    </button>
+
+    <div id="shippingResult" class="shipping-result"></div>
+
+    <hr/>
+
+    <div class="summary">
+      <p>Total Barang: <span id="totalItems">0</span></p>
+      <p>Total Harga: Rp <span id="totalPrice">0</span></p>
+      <p>Ongkir: Rp <span id="shippingCost">0</span></p>
+      <h3>Grand Total: Rp <span id="grandTotal">0</span></h3>
+    </div>
+
+    <button type="button" class="checkout-btn" onclick="createOrder()">
+      Buat Order Sekarang
+    </button>
+  </section>
+
+</main>
+
+<script src="../js/buyer.js"></script>
+</body>
+</html>

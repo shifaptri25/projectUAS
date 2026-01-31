@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pesanan Saya</title>
+  <link rel="stylesheet" href="../css/buyer.css" />
+</head>
+<body>
+
+<header class="header">
+  <a href="dashboardbuyer.html" class="nav-link">Kembali Belanja</a>
+
+  <div class="order-search">
+    <input type="number" id="searchOrderId" placeholder="Cari Order ID..." />
+    <button type="button" onclick="searchOrderById()">Cari</button>
+    <button type="button" onclick="loadMyOrders()">Reset</button>
+  </div>
+</header>
+
+<main class="orders-page">
+  <h2>Pesanan Saya</h2>
+  <div id="ordersList"></div>
+
+  <h3>Detail Order</h3>
+  <div id="orderDetail"></div>
+</main>
+
+<script src="../js/buyer.js"></script>
+</body>
+</html>

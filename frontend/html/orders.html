@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - Orders</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h2>Admin</h2>
+    <nav>
+      <a href="dashboardadmin.html">Dashboard</a>
+      <button onclick="logout()">Logout</button>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <h1>Orders Management</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Buyer</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="ordersTable"></tbody>
+    </table>
+
+  </main>
+</div>
+
+<script src="../js/admin.js"></script>
+</body>
+</html>

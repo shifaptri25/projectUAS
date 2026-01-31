@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Users</title>
+
+  <link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h2>Admin</h2>
+    <nav>
+      <a href="dashboardadmin.html">Dashboard</a>
+      <button onclick="logout()">Logout</button>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <div class="page users-page">
+      <h1>Users Management</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="usersTable"></tbody>
+      </table>
+    </div>
+    <hr/>
+
+    <h3>Hapus User</h3>
+    <input type="number" id="deleteUserId" placeholder="ID user" />
+
+    <button type="button" class="btn btn-danger" onclick="deleteUserByInputId()">
+      Delete User
+    </button>
+  </main>
+</div>
+
+
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

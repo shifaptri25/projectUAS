@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f5f7fb;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background: #111827;
+  color: #fff;
+  padding: 24px;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+}
+
+.sidebar nav a,
+.sidebar nav button {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  color: #e5e7eb;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sidebar nav a:hover,
+.sidebar nav button:hover {
+  background: #1f2933;
+}
+
+.content {
+  flex: 1;
+  padding: 32px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+tr:hover {
+  background: #f9fafb;
+}
+
+.btn {
+  padding: 8px 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+}
+
+form input, form select {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0 16px;
+}
+
+/* AUTH PAGE */
+.auth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-card {
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-card input,
+.auth-card select,
+.auth-card button {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.auth-card button {
+  background: #111827;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.auth-card button:hover {
+  opacity: 0.9;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+

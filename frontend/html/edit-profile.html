@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="../css/buyer.css" />
+</head>
+<body>
+
+<header class="header">
+  <a href="buyer-profile.html" class="nav-link">Kembali</a>
+</header>
+
+<div class="profile-photo">
+    <img src="https://via.placeholder.com/120">
+    <p>Foto Profil</p>
+</div>
+
+<main class="profile-page">
+  <h2>Edit Profile</h2>
+
+  <div class="profile-card">
+    <label>Nama</label>
+    <input id="editName">
+
+    <label>Alamat</label>
+    <textarea id="editAddress"></textarea>
+
+    <label>No HP</label>
+    <input id="editPhone">
+
+    <button onclick="updateProfile()">Simpan Perubahan</button>
+  </div>
+</main>
+
+<script src="../js/profile.js"></script>
+</body>
+</html>

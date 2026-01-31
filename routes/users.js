@@ -1,13 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const user = require('../controllers/userController');
 const auth = require('../middlewares/auth');
+const { isAdmin } = require('../middlewares/role');
 
-// Public: Admin only (bisa ditambah role check)
-router.get('/', auth, userController.getAllUsers);
-router.get('/:id', auth, userController.getUserById);
+// BUYER & SELLER
+router.get('/me/profile', auth, user.getMyProfile);
+router.put('/me/profile', auth, user.updateMyProfile);
 
-// Protected: Update profile sendiri
-router.put('/profile', auth, userController.updateUser);
+// ADMIN
+router.get('/', auth, isAdmin, user.getAllUsers);
+router.get('/:id', auth, isAdmin, user.getUserById);
+router.put('/:id', auth, isAdmin, user.updateUserById);
+router.delete('/:id', auth, isAdmin, user.deleteUserById);
 
 module.exports = router;

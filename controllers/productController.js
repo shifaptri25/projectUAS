@@ -3,8 +3,12 @@ const pool = require('../config/database');
 exports.getProducts = async (req, res) => {
   try {
     const [rows] = await pool.execute(`
-      SELECT p.*, c.name as category_name, u.name as seller_name 
-      FROM products p 
+      SELECT 
+        p.*,
+        p.image_url AS image,
+        c.name AS category_name,
+        u.name AS seller_name
+      FROM products p
       LEFT JOIN categories c ON p.category_id = c.id 
       LEFT JOIN users u ON p.seller_id = u.id
       ORDER BY p.created_at DESC
